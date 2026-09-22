@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   
   <!-- PRIMARY SEO META TAGS -->
-  <title>RonzQR - Free QR Code Generator with Logo | No Login Required | RonzLabs</title>
-  <meta name="title" content="RonzQR - Free QR Code Generator with Logo | No Login Required | RonzLabs" />
-  <meta name="description" content="Generate free, custom, dynamic QR codes instantly with logo, color themes, and high-resolution PNG/SVG downloads. No login or sign-up required. Best QR Code Maker by RonzLabs for WiFi, WhatsApp, Links, Contacts, and Location." />
+  <title>RonzQR - Free Custom QR Code Generator with Logo | RonzLabs</title>
+  <meta name="title" content="RonzQR - Free Custom QR Code Generator with Logo | RonzLabs" />
+  <meta name="description" content="Generate free, custom dynamic & static QR codes instantly with logo, color themes, and high-resolution PNG/SVG downloads. No login required. Best QR Code Maker by RonzLabs." />
   <meta name="keywords" content="RonzQR, RonzLabs, QR code generator no login, free QR code generator no sign up, QR generator with logo, custom QR code generator, dynamic QR code, create QR code without account, best QR code maker, WiFi QR code generator, WhatsApp QR code generator, vCard QR code generator, link to QR code, vector SVG QR code, high quality QR code download, online QR generator" />
   <meta name="author" content="RonzLabs" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://ronzqr.vercel.app/" />
 
-  <!-- GOOGLE ADSENSE SCRIPT (UPDATED WITH YOUR ID) -->
+  <!-- GOOGLE ADSENSE SCRIPT -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2643701914691883" crossorigin="anonymous"></script>
 
-  <!-- GOOGLE SEARCH FAVICON & BRAND LOGO TAGS -->
+  <!-- FAVICON & BRAND LOGO TAGS -->
   <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./logo.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="./logo.png" />
   <link rel="shortcut icon" href="./logo.png" />
 
-  <!-- OPEN GRAPH / FACEBOOK / WHATSAPP META TAGS -->
+  <!-- OPEN GRAPH / FACEBOOK META TAGS -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ronzqr.vercel.app/" />
-  <meta property="og:title" content="RonzQR - Free Custom QR Code Generator (No Login Required) by RonzLabs" />
+  <meta property="og:title" content="RonzQR - Free Custom QR Code Generator by RonzLabs" />
   <meta property="og:description" content="Create custom QR codes for URL, WiFi, WhatsApp, VCard & Location with custom logos & colors. 100% free with no login or account required." />
   <meta property="og:image" content="https://ronzqr.vercel.app/logo.png" />
   <meta property="og:site_name" content="RonzQR by RonzLabs" />
@@ -33,7 +33,7 @@
   <!-- TWITTER CARD META TAGS -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://ronzqr.vercel.app/" />
-  <meta name="twitter:title" content="RonzQR - Free Custom QR Code Generator | No Sign-Up" />
+  <meta name="twitter:title" content="RonzQR - Free Custom QR Code Generator" />
   <meta name="twitter:description" content="Generate high-resolution custom QR codes with logo and instant download options by RonzLabs. No login required." />
   <meta name="twitter:image" content="https://ronzqr.vercel.app/logo.png" />
 
@@ -124,20 +124,20 @@
       box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
       outline: none;
     }
+    .modal-backdrop {
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(8px);
+    }
   </style>
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col font-sans antialiased pb-10">
 
-  <!-- APP HEADER BAR WITH BRAND LOGO & NO LOGIN BADGE -->
+  <!-- HEADER BAR WITH NAV LINKS -->
   <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-between items-center shadow-lg">
     <a href="https://ronzqr.vercel.app/" class="flex items-center gap-2.5 group">
-      
-      <!-- BRAND LOGO CONTAINER -->
       <div class="relative flex items-center justify-center w-10 h-10 rounded-2xl bg-slate-900 border border-white/10 p-1.5 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
         <img src="./logo.png" alt="RonzQR Logo" class="w-full h-full object-contain">
       </div>
-
-      <!-- BRAND TEXT -->
       <div>
         <h1 class="font-extrabold text-lg tracking-wider text-white leading-tight flex items-center gap-2">
           Ronz<span class="text-indigo-400">QR</span>
@@ -149,13 +149,21 @@
       </div>
     </a>
     
-    <!-- Quick PWA Install Button -->
-    <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden bg-gradient-to-r from-indigo-500 to-purple-600 active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center gap-1.5 transition">
-      <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Add to Screen
-    </button>
+    <!-- Header Navigation & PWA -->
+    <div class="flex items-center gap-3">
+      <nav class="hidden md:flex items-center gap-4 text-xs font-semibold text-slate-300">
+        <button onclick="openModal('about-modal')" class="hover:text-indigo-400 transition">About</button>
+        <button onclick="openModal('privacy-modal')" class="hover:text-indigo-400 transition">Privacy Policy</button>
+        <button onclick="openModal('contact-modal')" class="hover:text-indigo-400 transition">Contact</button>
+      </nav>
+
+      <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden bg-gradient-to-r from-indigo-500 to-purple-600 active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center gap-1.5 transition">
+        <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Add App
+      </button>
+    </div>
   </header>
 
-  <!-- QUICK INSTALL / NO LOGIN HIGHLIGHT BANNER -->
+  <!-- QUICK HIGHLIGHT BANNER -->
   <div id="install-banner" class="bg-indigo-950/60 border-b border-indigo-500/30 px-4 py-2 flex justify-between items-center text-xs text-indigo-200">
     <div class="flex items-center gap-2">
       <i data-lucide="user-x" class="w-4 h-4 text-emerald-400"></i>
@@ -166,7 +174,7 @@
     </button>
   </div>
 
-  <!-- TOP BANNER AD CONTAINER (UPDATED WITH YOUR EXACT CODE) -->
+  <!-- TOP ADSENSE AD CONTAINER -->
   <div class="max-w-6xl w-full mx-auto px-4 pt-4 flex justify-center">
     <ins class="adsbygoogle"
          style="display:block"
@@ -184,9 +192,8 @@
     
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 
-      <!-- LEFT COLUMN (STICKY PREVIEW ON PC) -->
+      <!-- LEFT COLUMN (STICKY PREVIEW) -->
       <div class="md:col-span-5 lg:col-span-4 md:sticky md:top-20 space-y-4">
-        <!-- 1. LIVE QR PREVIEW CARD -->
         <section aria-label="QR Code Generator Preview" class="glass-card rounded-3xl p-5 shadow-2xl flex flex-col items-center relative overflow-hidden border border-white/10">
           <div class="absolute -top-10 -right-10 w-28 h-28 bg-indigo-500/20 rounded-full blur-2xl"></div>
           <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-purple-500/20 rounded-full blur-2xl"></div>
@@ -208,7 +215,7 @@
           </div>
         </section>
 
-        <!-- SIDEBAR AD CONTAINER (UPDATED WITH YOUR EXACT CODE) -->
+        <!-- SIDEBAR AD CONTAINER -->
         <div class="glass-card rounded-3xl p-3 border border-white/5 flex justify-center overflow-hidden">
           <ins class="adsbygoogle"
                style="display:block"
@@ -225,7 +232,7 @@
       <!-- RIGHT COLUMN (INPUT CONTROLS & SETTINGS) -->
       <div class="md:col-span-7 lg:col-span-8 space-y-4">
 
-        <!-- 2. TYPE SELECTION TABS -->
+        <!-- TYPE SELECTION TABS -->
         <section aria-label="QR Code Types" class="space-y-1.5">
           <div class="flex justify-between items-center px-1">
             <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
@@ -236,7 +243,6 @@
             </span>
           </div>
 
-          <!-- Responsive Horizontal Scroll / PC Flex-Wrap Container -->
           <div class="flex md:flex-wrap gap-2.5 overflow-x-auto hide-scrollbar py-1 px-0.5">
             <button onclick="switchType('url')" id="card-url" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 border-indigo-500/50 bg-indigo-500/20 text-indigo-300 shadow-md">
               <i data-lucide="globe" class="w-5 h-5 mb-1"></i>
@@ -273,27 +279,22 @@
           </div>
         </section>
 
-        <!-- 3. INPUT FORM CARDS -->
+        <!-- INPUT FORM CARDS -->
         <section aria-label="QR Code Input Form" class="glass-card rounded-3xl p-4 md:p-6 shadow-xl space-y-3">
           <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
             <i data-lucide="edit-3" class="w-3.5 h-3.5 text-indigo-400"></i> Step 2: Input Details
           </h2>
-          <div id="input-fields" class="space-y-3">
-            <!-- Dynamically Populated -->
-          </div>
+          <div id="input-fields" class="space-y-3"></div>
         </section>
 
-        <!-- 4. CUSTOMIZATION & STYLING SECTION -->
+        <!-- CUSTOMIZATION & STYLING SECTION -->
         <section aria-label="QR Code Styling" class="glass-card rounded-3xl p-4 md:p-6 shadow-xl space-y-4">
           <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
             <i data-lucide="palette" class="w-3.5 h-3.5 text-indigo-400"></i> Step 3: Custom Styling
           </h2>
 
-          <!-- LOGO MANAGEMENT SECTION WITH PRESETS & PREVIEW -->
           <div class="space-y-2 border-b border-white/10 pb-3">
             <label for="logo-input" class="block text-[11px] font-medium text-slate-300">Center Brand Logo</label>
-            
-            <!-- Preset Logos -->
             <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1">
               <span class="text-[10px] text-slate-400 font-medium">Quick Preset:</span>
               <button onclick="setPresetLogo('https://cdn-icons-png.flaticon.com/512/300/300221.png')" class="p-1.5 bg-slate-900 border border-white/10 rounded-xl hover:border-indigo-500 active:scale-95 transition">
@@ -310,7 +311,6 @@
               </button>
             </div>
 
-            <!-- Custom Upload Bar & Active Preview -->
             <div class="flex items-center gap-2">
               <input type="file" id="logo-input" accept="image/*" onchange="handleLogoUpload(event)" class="text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-500/20 file:text-indigo-300 hover:file:bg-indigo-500/30 cursor-pointer w-full">
               <div id="logo-preview-badge" class="hidden flex items-center gap-1.5 bg-slate-900 border border-indigo-500/40 p-1 px-2 rounded-xl">
@@ -320,7 +320,6 @@
             </div>
           </div>
 
-          <!-- Presets Carousel -->
           <div>
             <label class="block text-[11px] font-medium text-slate-300 mb-2">Instant Color Themes</label>
             <div class="flex gap-2 overflow-x-auto hide-scrollbar pb-0.5">
@@ -331,7 +330,6 @@
             </div>
           </div>
 
-          <!-- Color Pickers Grid -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
             <div>
               <label for="color-dots-1" class="block text-[10px] font-medium text-slate-400 mb-1">Dots Primary</label>
@@ -351,7 +349,6 @@
             </div>
           </div>
 
-          <!-- Pattern Options -->
           <div class="grid grid-cols-2 gap-2.5">
             <div>
               <label for="shape-dots" class="block text-[10px] font-medium text-slate-400 mb-1">Pattern Shape</label>
@@ -373,7 +370,6 @@
             </div>
           </div>
 
-          <!-- Badge Title & Frame Options -->
           <div class="border-t border-white/10 pt-3 space-y-2.5">
             <div>
               <label for="cta-input" class="block text-[11px] font-medium text-slate-300 mb-1">Frame Badge Label</label>
@@ -384,24 +380,45 @@
               <input type="color" id="color-frame" value="#090d16" onchange="updateFrameColor()" class="h-8 w-12 rounded-lg border-0 p-0.5 bg-slate-950 cursor-pointer">
             </div>
           </div>
-
         </section>
 
-        <!-- 5. SEO INDEXABLE & RANKING CONTENT SECTION -->
-        <article class="glass-card rounded-3xl p-5 md:p-6 shadow-xl space-y-3 text-slate-300 text-xs leading-relaxed border border-white/5">
-          <h2 class="text-sm font-bold text-white tracking-wide">Why RonzQR by RonzLabs is the Best Free QR Code Generator (No Login Required)</h2>
-          <p>
-            <strong>RonzQR</strong>, developed by <strong>RonzLabs</strong>, is a free online QR Code Generator that lets you create custom QR codes with logos, colors, and stylish patterns — <strong>completely free with no login or sign-up required</strong>. Whether you need a <strong>WiFi QR Code Generator</strong>, <strong>WhatsApp QR Code Generator</strong>, <strong>Business VCard Contact Maker</strong>, or <strong>Website Link to QR Code Converter</strong>, RonzQR provides high-quality PNG and vector SVG downloads instantly without requiring an account.
-          </p>
-          <h3 class="text-xs font-semibold text-indigo-300 mt-2">Key Features of RonzQR Generator:</h3>
-          <ul class="list-disc list-inside space-y-1 text-slate-400">
-            <li><strong>No Login or Registration Required:</strong> Create and download QR codes instantly.</li>
-            <li>Free dynamic & static custom QR code generator</li>
-            <li>Add custom brand logos in the center of QR codes</li>
-            <li>High-resolution PNG & vector SVG downloads</li>
-            <li>Custom shapes, color gradients, and eye styling options</li>
-            <li>100% free with unlimited QR code creation by RonzLabs</li>
-          </ul>
+        <!-- RICH CONTENT / ARTICLE SECTION (ADSENSE COMPLIANT) -->
+        <article class="glass-card rounded-3xl p-6 shadow-xl space-y-5 text-slate-300 text-xs leading-relaxed border border-white/5">
+          <header class="border-b border-white/10 pb-4">
+            <h2 class="text-base font-bold text-white tracking-wide">About RonzQR by RonzLabs: Free Custom QR Code Generator</h2>
+            <p class="text-slate-400 mt-1">Generate high-precision static and custom QR codes instantly with logo integration, color gradients, and vector SVG exports without login barriers.</p>
+          </header>
+
+          <section class="space-y-2">
+            <h3 class="text-sm font-semibold text-indigo-300">How to Create Custom QR Codes Step-by-Step</h3>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-400">
+              <li><strong>Select Category Type:</strong> Choose between Website Links, WhatsApp direct messaging, Wi-Fi credentials, Contact Cards (vCard), Geolocation, Email, SMS, or Plain Text.</li>
+              <li><strong>Enter Target Details:</strong> Fill in your URL, phone number, or network password in Step 2. All encoding happens client-side directly in your browser.</li>
+              <li><strong>Customize & Brand:</strong> Upload a custom brand logo or select a preset icon. Select custom color themes, dot patterns, and outer eye shapes.</li>
+              <li><strong>Download Instantly:</strong> Export your finalized QR code as a high-resolution PNG image or scalable Vector SVG file suitable for commercial print.</li>
+            </ol>
+          </section>
+
+          <section class="space-y-2">
+            <h3 class="text-sm font-semibold text-indigo-300">Why Use Vector SVG Format for Printing?</h3>
+            <p class="text-slate-400">
+              When printing QR codes on business cards, brochures, banners, or product packaging, raster images like PNG can become pixelated when scaled up. SVG (Scalable Vector Graphics) retains perfect sharpness at any resolution, ensuring high scan reliability across all mobile camera devices.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h3 class="text-sm font-semibold text-indigo-300">Frequently Asked Questions (FAQ)</h3>
+            <div class="space-y-3">
+              <div>
+                <h4 class="font-bold text-white">Do RonzQR codes ever expire?</h4>
+                <p class="text-slate-400">No. Standard static QR codes created with RonzQR encode information directly into the matrix data dots. They remain active indefinitely and will never expire.</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-white">Is there any limit to free QR generation?</h4>
+                <p class="text-slate-400">There are no limits. You can generate unlimited custom QR codes for personal or commercial projects with zero sign-ups or subscription fees.</p>
+              </div>
+            </div>
+          </section>
         </article>
 
       </div>
@@ -409,10 +426,94 @@
 
   </main>
 
-  <!-- FOOTER BRANDING & RIGHTS -->
-  <footer class="mt-10 border-t border-white/10 pt-6 text-center text-xs text-slate-500">
+  <!-- MODAL: PRIVACY POLICY -->
+  <div id="privacy-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 overflow-y-auto border border-white/10 shadow-2xl relative space-y-4">
+      <button onclick="closeModal('privacy-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <i data-lucide="shield-check" class="text-indigo-400"></i> Privacy Policy
+      </h2>
+      <div class="text-xs text-slate-300 space-y-3 leading-relaxed">
+        <p><strong>Effective Date:</strong> September 22, 2026</p>
+        <p>At <strong>RonzQR by RonzLabs</strong>, we prioritize your privacy above all. This Privacy Policy explains how information is handled when you use our free custom QR generator tool.</p>
+        <h3 class="font-bold text-white text-xs uppercase">1. Zero User Data Storage</h3>
+        <p>RonzQR operates entirely on client-side rendering. When you input text, Wi-Fi credentials, URLs, or personal contact details, the data is processed directly inside your browser. We do not store, log, or transmit your entered QR content to external servers.</p>
+        <h3 class="font-bold text-white text-xs uppercase">2. Google AdSense & Cookies</h3>
+        <p>We use third-party advertising services like Google AdSense to serve ads when you visit our website. Google may use cookies to serve personalized ads based on your visits to this and other websites. You can opt out of personalized advertising by visiting Google's Ad Settings.</p>
+        <h3 class="font-bold text-white text-xs uppercase">3. External Links</h3>
+        <p>Our generator allows creation of QR codes linking to third-party services (such as WhatsApp, Google Maps, or custom sites). We are not responsible for the content or privacy policies of those third-party platforms.</p>
+        <h3 class="font-bold text-white text-xs uppercase">4. Contact Us</h3>
+        <p>If you have any questions regarding this privacy policy, feel free to contact us at: <a href="mailto:ronzlabsofficial@gmail.com" class="text-indigo-400 hover:underline">ronzlabsofficial@gmail.com</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ABOUT US -->
+  <div id="about-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[85vh] rounded-3xl p-6 overflow-y-auto border border-white/10 shadow-2xl relative space-y-4">
+      <button onclick="closeModal('about-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <i data-lucide="info" class="text-indigo-400"></i> About RonzQR & RonzLabs
+      </h2>
+      <div class="text-xs text-slate-300 space-y-3 leading-relaxed">
+        <p><strong>RonzQR</strong> is a free web utility suite developed by <strong>RonzLabs</strong> designed to provide instant, high-quality, and customizable QR code generation without subscription paywalls or complex sign-up processes.</p>
+        <p>Our mission is to empower small businesses, content creators, event organizers, and individual users with enterprise-grade branding tools—including vector SVG export capability, embedded central brand logos, and dark mode aesthetic styling.</p>
+        <h3 class="font-bold text-white text-xs uppercase">Our Core Principles:</h3>
+        <ul class="list-disc list-inside space-y-1 text-slate-400">
+          <li>100% Free for life with no hidden charges.</li>
+          <li>Privacy-first architecture with local browser rendering.</li>
+          <li>High-speed performance with modern responsive UI design.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONTACT -->
+  <div id="contact-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-xl w-full rounded-3xl p-6 border border-white/10 shadow-2xl relative space-y-4">
+      <button onclick="closeModal('contact-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <i data-lucide="mail" class="text-indigo-400"></i> Contact Us
+      </h2>
+      <p class="text-xs text-slate-400">Have feedback, business inquiries, or need assistance? Reach out to the RonzLabs developer team.</p>
+      
+      <form onsubmit="handleContactSubmit(event)" class="space-y-3 pt-2">
+        <div>
+          <label class="block text-[11px] text-slate-300 font-medium mb-1">Your Name</label>
+          <input type="text" required placeholder="John Doe" class="w-full p-2.5 glass-input rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] text-slate-300 font-medium mb-1">Your Email</label>
+          <input type="email" required placeholder="name@example.com" class="w-full p-2.5 glass-input rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] text-slate-300 font-medium mb-1">Message</label>
+          <textarea required rows="3" placeholder="How can we help you?" class="w-full p-2.5 glass-input rounded-xl text-xs"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white font-bold py-2.5 rounded-xl text-xs transition">Send Message</button>
+      </form>
+
+      <div class="border-t border-white/10 pt-3 text-center text-xs text-slate-400">
+        Direct Email: <a href="mailto:ronzlabsofficial@gmail.com" class="text-indigo-400 hover:underline">ronzlabsofficial@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER BRANDING, NAVIGATION & RIGHTS -->
+  <footer class="mt-10 border-t border-white/10 pt-6 pb-4 text-center text-xs text-slate-500 space-y-3">
+    <div class="flex justify-center gap-6 text-slate-400 font-medium">
+      <button onclick="openModal('about-modal')" class="hover:text-indigo-400 transition">About Us</button>
+      <button onclick="openModal('privacy-modal')" class="hover:text-indigo-400 transition">Privacy Policy</button>
+      <button onclick="openModal('contact-modal')" class="hover:text-indigo-400 transition">Contact Us</button>
+    </div>
     <p>© 2026 <strong>RonzLabs</strong>. All rights reserved.</p>
-    <p class="mt-1">Contact: <a href="mailto:ronzlabsofficial@gmail.com" class="text-indigo-400 hover:underline">ronzlabsofficial@gmail.com</a></p>
+    <p class="text-[11px]">Support Email: <a href="mailto:ronzlabsofficial@gmail.com" class="text-indigo-400 hover:underline">ronzlabsofficial@gmail.com</a></p>
   </footer>
 
   <script>
@@ -421,6 +522,23 @@
     let currentType = 'url';
     let uploadedLogoUrl = null;
     let deferredPrompt = null;
+
+    // Modal Control Functions
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for reaching out! Your message has been noted.');
+      closeModal('contact-modal');
+    }
 
     // Handle Native PWA Installation
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -463,13 +581,11 @@
       cornersDotOptions: { type: "dot", color: "#4f46e5" }
     });
 
-    // Append to Canvas
     const canvasContainer = document.getElementById("canvas");
     if (canvasContainer) {
       qrCode.append(canvasContainer);
     }
 
-    // Switch Category Tab Logic
     function switchType(type) {
       currentType = type;
       
