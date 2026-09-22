@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <!-- PRIMARY SEO META TAGS -->
+  <title>RonzQR - Free Online QR Code Generator with Logo | Custom QR Studio</title>
+  <meta name="title" content="RonzQR - Free Online QR Code Generator with Logo | Custom QR Studio" />
+  <meta name="description" content="Generate free, custom, dynamic QR codes instantly with logo, color themes, and high-resolution PNG/SVG downloads. Best QR Code Maker for WiFi, WhatsApp, Links, Contacts, Location, and Business." />
+  <meta name="keywords" content="RonzQR, QR code generator, free QR code generator, QR generator with logo, custom QR code generator, dynamic QR code, create QR code, best QR code maker, WiFi QR code generator, WhatsApp QR code generator, vCard QR code generator, link to QR code, vector SVG QR code, high quality QR code download, online QR generator, QR code maker free, custom QR code maker, custom color QR code, scanner QR code, QR maker online, generate QR code free" />
+  <meta name="author" content="RonzQR Studio" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://ronzqr.com/" />
+
+  <!-- OPEN GRAPH / FACEBOOK / WHATSAPP META TAGS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ronzqr.com/" />
+  <meta property="og:title" content="RonzQR - Free Online QR Code Generator with Logo" />
+  <meta property="og:description" content="Create custom QR codes for URL, WiFi, WhatsApp, VCard & Location with custom logos & colors. Fast, free, and no sign-up required." />
+  <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/3595/3595856.png" />
+  <meta property="og:site_name" content="RonzQR" />
+
+  <!-- TWITTER CARD META TAGS -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://ronzqr.com/" />
+  <meta name="twitter:title" content="RonzQR - Free Custom QR Code Generator" />
+  <meta name="twitter:description" content="Generate high-resolution custom QR codes with logo and instant download options." />
+  <meta name="twitter:image" content="https://cdn-icons-png.flaticon.com/512/3595/3595856.png" />
+
+  <!-- MOBILE PWA & APP CAPABILITIES -->
+  <meta name="theme-color" content="#090d16" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="RonzQR" />
+
+  <!-- PWA MANIFEST DATA -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"RonzQR Studio","short_name":"RonzQR","start_url":".","display":"standalone","background_color":"#090d16","theme_color":"#090d16","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/3595/3595856.png","sizes":"512x512","type":"image/png"}]}' />
+
+  <!-- SCHEMA.ORG STRUCTURED DATA (JSON-LD FOR GOOGLE RICH RESULTS) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RonzQR",
+    "alternateName": "RonzQR Studio",
+    "url": "https://ronzqr.com/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Free high-performance QR Code Generator tool with instant logo integration, color themes, vector SVG downloads, and custom styling.",
+    "creator": {
+      "@type": "Organization",
+      "name": "RonzQR Studio"
+    }
+  }
+  </script>
+
+  <!-- TAILWIND CSS & LIBRARIES -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      box-sizing: border-box;
+    }
+    input, textarea, select {
+      user-select: auto !important;
+    }
+    body {
+      background: #090d16;
+      background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #090d16 75%);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .glass-card {
+      background: rgba(22, 30, 49, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-input {
+      background: rgba(11, 17, 32, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-input:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+      outline: none;
+    }
+  </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col font-sans antialiased pb-10">
+
+  <!-- APP HEADER BAR WITH BRAND NAME "RonzQR" -->
+  <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-2.5">
+      <div class="bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-2 rounded-2xl shadow-lg shadow-indigo-500/20 active:scale-95 transition">
+        <i data-lucide="qr-code" class="w-5 h-5 text-white"></i>
+      </div>
+      <div>
+        <h1 class="font-extrabold text-lg tracking-wider text-white leading-tight">Ronz<span class="text-indigo-400">QR</span></h1>
+        <p class="text-[10px] text-indigo-300 font-medium">Free Custom QR Code Generator</p>
+      </div>
+    </div>
+    
+    <!-- Quick PWA Install Button -->
+    <button id="pwa-install-btn" onclick="triggerPWAInstall()" class="hidden bg-gradient-to-r from-indigo-500 to-purple-600 active:scale-95 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center gap-1.5 transition">
+      <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> Add to Screen
+    </button>
+  </header>
+
+  <!-- QUICK INSTALL / BOOKMARK BANNER -->
+  <div id="install-banner" class="bg-indigo-950/60 border-b border-indigo-500/30 px-4 py-2 flex justify-between items-center text-xs text-indigo-200">
+    <div class="flex items-center gap-2">
+      <i data-lucide="bookmark" class="w-4 h-4 text-indigo-400"></i>
+      <span>Fast Access: Tap menu & select <b>'Add to Home Screen'</b></span>
+    </div>
+    <button onclick="document.getElementById('install-banner').remove()" class="text-slate-400 hover:text-white">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-md w-full mx-auto p-4 space-y-4">
+
+    <!-- 1. LIVE QR PREVIEW CARD -->
+    <section aria-label="QR Code Generator Preview" class="glass-card rounded-3xl p-5 shadow-2xl flex flex-col items-center relative overflow-hidden border border-white/10">
+      <div class="absolute -top-10 -right-10 w-28 h-28 bg-indigo-500/20 rounded-full blur-2xl"></div>
+      <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-purple-500/20 rounded-full blur-2xl"></div>
+
+      <!-- Frame & Canvas Container -->
+      <div id="frame-wrapper" class="p-4 rounded-2xl bg-slate-950 transition-all flex flex-col items-center shadow-2xl border border-white/10 w-full max-w-[220px]">
+        <div id="canvas" class="bg-white p-2 rounded-xl flex justify-center items-center shadow-inner overflow-hidden"></div>
+        <p id="frame-text" class="text-white font-black text-[11px] tracking-widest mt-2.5 uppercase text-center">SCAN ME</p>
+      </div>
+
+      <!-- Quick Action Export Bar -->
+      <div class="w-full grid grid-cols-2 gap-2.5 mt-5">
+        <button onclick="downloadQR('png')" class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 active:scale-95 text-white font-bold py-3 px-3 rounded-2xl text-xs shadow-lg shadow-indigo-500/25 transition flex justify-center items-center gap-2">
+          <i data-lucide="download-cloud" class="w-4 h-4"></i> Download PNG
+        </button>
+        <button onclick="downloadQR('svg')" class="bg-slate-900 hover:bg-slate-800 border border-white/15 active:scale-95 text-slate-200 font-bold py-3 px-3 rounded-2xl text-xs transition flex justify-center items-center gap-2">
+          <i data-lucide="file-code-2" class="w-4 h-4"></i> Vector SVG
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. TYPE SELECTION TABS -->
+    <section aria-label="QR Code Types" class="space-y-1.5">
+      <div class="flex justify-between items-center px-1">
+        <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+          <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-indigo-400"></i> Step 1: Choose Type
+        </h2>
+        <span class="text-[10px] text-indigo-400 font-medium flex items-center gap-0.5">
+          Scroll for more <i data-lucide="chevron-right" class="w-3 h-3"></i>
+        </span>
+      </div>
+
+      <!-- Overflow Horizontal Scroll Container -->
+      <div class="flex gap-2.5 overflow-x-auto hide-scrollbar py-1 px-0.5">
+        <button onclick="switchType('url')" id="card-url" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 border-indigo-500/50 bg-indigo-500/20 text-indigo-300 shadow-md">
+          <i data-lucide="globe" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">Website</span>
+        </button>
+        <button onclick="switchType('whatsapp')" id="card-whatsapp" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="message-circle" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">WhatsApp</span>
+        </button>
+        <button onclick="switchType('wifi')" id="card-wifi" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="wifi" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">Wi-Fi</span>
+        </button>
+        <button onclick="switchType('vcard')" id="card-vcard" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="user-check" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">Contact</span>
+        </button>
+        <button onclick="switchType('location')" id="card-location" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="map-pin" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">Location</span>
+        </button>
+        <button onclick="switchType('email')" id="card-email" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="mail" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">Email</span>
+        </button>
+        <button onclick="switchType('sms')" id="card-sms" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="send" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">SMS</span>
+        </button>
+        <button onclick="switchType('text')" id="card-text" class="type-card glass-card flex-shrink-0 p-2.5 rounded-2xl flex flex-col items-center justify-center w-[76px] h-20 transition active:scale-95 text-slate-400">
+          <i data-lucide="file-text" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-semibold">Text</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. INPUT FORM CARDS -->
+    <section aria-label="QR Code Input Form" class="glass-card rounded-3xl p-4 shadow-xl space-y-3">
+      <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+        <i data-lucide="edit-3" class="w-3.5 h-3.5 text-indigo-400"></i> Step 2: Input Details
+      </h2>
+      <div id="input-fields" class="space-y-3">
+        <!-- Dynamically Populated -->
+      </div>
+    </section>
+
+    <!-- 4. CUSTOMIZATION & STYLING SECTION -->
+    <section aria-label="QR Code Styling" class="glass-card rounded-3xl p-4 shadow-xl space-y-4">
+      <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+        <i data-lucide="palette" class="w-3.5 h-3.5 text-indigo-400"></i> Step 3: Custom Styling
+      </h2>
+
+      <!-- LOGO MANAGEMENT SECTION WITH PRESETS & PREVIEW -->
+      <div class="space-y-2 border-b border-white/10 pb-3">
+        <label for="logo-input" class="block text-[11px] font-medium text-slate-300">Center Brand Logo</label>
+        
+        <!-- Preset Logos -->
+        <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1">
+          <span class="text-[10px] text-slate-400 font-medium">Quick Preset:</span>
+          <button onclick="setPresetLogo('https://cdn-icons-png.flaticon.com/512/300/300221.png')" class="p-1.5 bg-slate-900 border border-white/10 rounded-xl hover:border-indigo-500 active:scale-95 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" class="w-5 h-5 object-contain" alt="Google">
+          </button>
+          <button onclick="setPresetLogo('https://cdn-icons-png.flaticon.com/512/3670/3670051.png')" class="p-1.5 bg-slate-900 border border-white/10 rounded-xl hover:border-indigo-500 active:scale-95 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" class="w-5 h-5 object-contain" alt="WhatsApp">
+          </button>
+          <button onclick="setPresetLogo('https://cdn-icons-png.flaticon.com/512/93/93158.png')" class="p-1.5 bg-slate-900 border border-white/10 rounded-xl hover:border-indigo-500 active:scale-95 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/93/93158.png" class="w-5 h-5 object-contain" alt="WiFi">
+          </button>
+          <button onclick="setPresetLogo('https://cdn-icons-png.flaticon.com/512/1006/1006771.png')" class="p-1.5 bg-slate-900 border border-white/10 rounded-xl hover:border-indigo-500 active:scale-95 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" class="w-5 h-5 object-contain" alt="Globe">
+          </button>
+        </div>
+
+        <!-- Custom Upload Bar & Active Preview -->
+        <div class="flex items-center gap-2">
+          <input type="file" id="logo-input" accept="image/*" onchange="handleLogoUpload(event)" class="text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-500/20 file:text-indigo-300 hover:file:bg-indigo-500/30 cursor-pointer w-full">
+          <div id="logo-preview-badge" class="hidden flex items-center gap-1.5 bg-slate-900 border border-indigo-500/40 p-1 px-2 rounded-xl">
+            <img id="logo-preview-img" src="" class="w-5 h-5 object-contain rounded" alt="Logo Preview">
+            <button onclick="clearLogo()" class="text-xs text-rose-400 hover:text-rose-300 font-bold pl-1">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Presets Carousel -->
+      <div>
+        <label class="block text-[11px] font-medium text-slate-300 mb-2">Instant Color Themes</label>
+        <div class="flex gap-2 overflow-x-auto hide-scrollbar pb-0.5">
+          <button onclick="applyPreset('neon')" class="px-3 py-2 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-xl whitespace-nowrap active:scale-95 transition">Neon Indigo</button>
+          <button onclick="applyPreset('classic')" class="px-3 py-2 bg-slate-800 border border-white/10 text-slate-300 text-xs font-semibold rounded-xl whitespace-nowrap active:scale-95 transition">Pure Slate</button>
+          <button onclick="applyPreset('emerald')" class="px-3 py-2 bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold rounded-xl whitespace-nowrap active:scale-95 transition">Emerald Mint</button>
+          <button onclick="applyPreset('sunset')" class="px-3 py-2 bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs font-semibold rounded-xl whitespace-nowrap active:scale-95 transition">Sunset Fire</button>
+        </div>
+      </div>
+
+      <!-- Color Pickers Grid -->
+      <div class="grid grid-cols-2 gap-2.5">
+        <div>
+          <label for="color-dots-1" class="block text-[10px] font-medium text-slate-400 mb-1">Dots Primary</label>
+          <input type="color" id="color-dots-1" value="#6366f1" onchange="updateQR()" class="w-full h-9 rounded-xl border-0 p-0.5 bg-slate-950 cursor-pointer">
+        </div>
+        <div>
+          <label for="color-dots-2" class="block text-[10px] font-medium text-slate-400 mb-1">Dots Secondary</label>
+          <input type="color" id="color-dots-2" value="#a855f7" onchange="updateQR()" class="w-full h-9 rounded-xl border-0 p-0.5 bg-slate-950 cursor-pointer">
+        </div>
+        <div>
+          <label for="color-bg" class="block text-[10px] font-medium text-slate-400 mb-1">Background</label>
+          <input type="color" id="color-bg" value="#ffffff" onchange="updateQR()" class="w-full h-9 rounded-xl border-0 p-0.5 bg-slate-950 cursor-pointer">
+        </div>
+        <div>
+          <label for="color-eyes" class="block text-[10px] font-medium text-slate-400 mb-1">Corners Eyes</label>
+          <input type="color" id="color-eyes" value="#4f46e5" onchange="updateQR()" class="w-full h-9 rounded-xl border-0 p-0.5 bg-slate-950 cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Pattern Options -->
+      <div class="grid grid-cols-2 gap-2.5">
+        <div>
+          <label for="shape-dots" class="block text-[10px] font-medium text-slate-400 mb-1">Pattern Shape</label>
+          <select id="shape-dots" onchange="updateQR()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            <option value="rounded" selected>Rounded Dots</option>
+            <option value="dots">Circles</option>
+            <option value="classy">Classy Modern</option>
+            <option value="extra-rounded">Extra Curved</option>
+            <option value="square">Classic Square</option>
+          </select>
+        </div>
+        <div>
+          <label for="shape-corner-sq" class="block text-[10px] font-medium text-slate-400 mb-1">Corner Eye Shape</label>
+          <select id="shape-corner-sq" onchange="updateQR()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            <option value="extra-rounded" selected>Curved Square</option>
+            <option value="dot">Smooth Circle</option>
+            <option value="square">Sharp Square</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Badge Title & Frame Options -->
+      <div class="border-t border-white/10 pt-3 space-y-2.5">
+        <div>
+          <label for="cta-input" class="block text-[11px] font-medium text-slate-300 mb-1">Frame Badge Label</label>
+          <input type="text" id="cta-input" value="SCAN ME" oninput="updateFrameText()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+        </div>
+        <div class="flex justify-between items-center">
+          <label for="color-frame" class="text-[11px] font-medium text-slate-300">Frame Background Color</label>
+          <input type="color" id="color-frame" value="#090d16" onchange="updateFrameColor()" class="h-8 w-12 rounded-lg border-0 p-0.5 bg-slate-950 cursor-pointer">
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 5. SEO INDEXABLE CONTENT SECTION -->
+    <article class="glass-card rounded-3xl p-5 shadow-xl space-y-3 text-slate-300 text-xs leading-relaxed border border-white/5">
+      <h2 class="text-sm font-bold text-white tracking-wide">Why RonzQR is the Best Free QR Code Generator</h2>
+      <p>
+        <strong>RonzQR</strong> is a free online QR Code Generator that lets you create custom QR codes with logos, colors, and stylish patterns. Whether you need a <strong>WiFi QR Code</strong>, <strong>WhatsApp QR Code</strong>, <strong>Business VCard Contact</strong>, or <strong>Website Link QR Code</strong>, RonzQR provides high-quality PNG and vector SVG downloads with no registration required.
+      </p>
+      <h3 class="text-xs font-semibold text-indigo-300 mt-2">Key Features of RonzQR Generator:</h3>
+      <ul class="list-disc list-inside space-y-1 text-slate-400">
+        <li>Free dynamic & static QR code generator</li>
+        <li>Add custom brand logos in the center of QR codes</li>
+        <li>High-resolution PNG & vector SVG downloads</li>
+        <li>Custom shapes, colors, and eye styling options</li>
+        <li>100% free with unlimited QR code creation</li>
+      </ul>
+    </article>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    let currentType = 'url';
+    let uploadedLogoUrl = null;
+    let deferredPrompt = null;
+
+    // Handle Native PWA Installation
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const installBtn = document.getElementById('pwa-install-btn');
+      if (installBtn) installBtn.classList.remove('hidden');
+    });
+
+    function triggerPWAInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User installed RonzQR');
+          }
+          deferredPrompt = null;
+          document.getElementById('pwa-install-btn').classList.add('hidden');
+        });
+      }
+    }
+
+    // Initialize QR Code Engine
+    const qrCode = new QRCodeStyling({
+      width: 190,
+      height: 190,
+      type: "canvas",
+      data: "https://ronzqr.com",
+      imageOptions: { hideBackgroundDots: true, imageSize: 0.3, margin: 2 },
+      dotsOptions: {
+        type: "rounded",
+        gradient: {
+          type: "linear",
+          rotation: 0,
+          colorStops: [{ offset: 0, color: "#6366f1" }, { offset: 1, color: "#a855f7" }]
+        }
+      },
+      backgroundOptions: { color: "#ffffff" },
+      cornersSquareOptions: { type: "extra-rounded", color: "#4f46e5" },
+      cornersDotOptions: { type: "dot", color: "#4f46e5" }
+    });
+
+    // Append to Canvas
+    const canvasContainer = document.getElementById("canvas");
+    if (canvasContainer) {
+      qrCode.append(canvasContainer);
+    }
+
+    // Switch Category Tab Logic
+    function switchType(type) {
+      currentType = type;
+      
+      document.querySelectorAll('.type-card').forEach(card => {
+        card.classList.remove('border-indigo-500/50', 'bg-indigo-500/20', 'text-indigo-300', 'shadow-md');
+        card.classList.add('text-slate-400');
+      });
+      
+      const activeCard = document.getElementById(`card-${type}`);
+      if (activeCard) {
+        activeCard.classList.remove('text-slate-400');
+        activeCard.classList.add('border-indigo-500/50', 'bg-indigo-500/20', 'text-indigo-300', 'shadow-md');
+      }
+
+      const container = document.getElementById("input-fields");
+      if (!container) return;
+
+      if (type === 'url') {
+        container.innerHTML = `
+          <div>
+            <label for="data-url" class="block text-[11px] font-medium text-slate-300 mb-1">Enter Website Link</label>
+            <input type="url" id="data-url" value="https://ronzqr.com" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+          </div>`;
+      } else if (type === 'whatsapp') {
+        container.innerHTML = `
+          <div class="space-y-2.5">
+            <div>
+              <label for="wa-phone" class="block text-[11px] font-medium text-slate-300 mb-1">WhatsApp Number (with country code)</label>
+              <input type="tel" id="wa-phone" value="923001234567" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <div>
+              <label for="wa-msg" class="block text-[11px] font-medium text-slate-300 mb-1">Default Greeting Message</label>
+              <textarea id="wa-msg" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs" rows="2">Hi, I want more information.</textarea>
+            </div>
+          </div>`;
+      } else if (type === 'wifi') {
+        container.innerHTML = `
+          <div class="space-y-2.5">
+            <div>
+              <label for="wifi-ssid" class="block text-[11px] font-medium text-slate-300 mb-1">Wi-Fi Network Name (SSID)</label>
+              <input type="text" id="wifi-ssid" value="Home-WiFi" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <div>
+              <label for="wifi-pass" class="block text-[11px] font-medium text-slate-300 mb-1">Password</label>
+              <input type="text" id="wifi-pass" value="Password123" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <div>
+              <label for="wifi-type" class="block text-[11px] font-medium text-slate-300 mb-1">Encryption Mode</label>
+              <select id="wifi-type" onchange="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+                <option value="WPA">WPA/WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">Open (No Password)</option>
+              </select>
+            </div>
+          </div>`;
+      } else if (type === 'vcard') {
+        container.innerHTML = `
+          <div class="space-y-2">
+            <div class="grid grid-cols-2 gap-2">
+              <input type="text" id="vc-fn" value="Ronz" placeholder="First Name" oninput="compileData()" class="p-2.5 glass-input rounded-xl text-xs">
+              <input type="text" id="vc-ln" value="Davil" placeholder="Last Name" oninput="compileData()" class="p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <input type="tel" id="vc-phone" value="+923001234567" placeholder="Phone Number" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            <input type="email" id="vc-email" value="contact@ronzqr.com" placeholder="Email Address" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+          </div>`;
+      } else if (type === 'location') {
+        container.innerHTML = `
+          <div class="space-y-2">
+            <div>
+              <label for="loc-lat" class="block text-[11px] font-medium text-slate-300 mb-1">Latitude</label>
+              <input type="text" id="loc-lat" value="31.5204" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <div>
+              <label for="loc-lng" class="block text-[11px] font-medium text-slate-300 mb-1">Longitude</label>
+              <input type="text" id="loc-lng" value="74.3587" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+          </div>`;
+      } else if (type === 'email') {
+        container.innerHTML = `
+          <div class="space-y-2">
+            <div>
+              <label for="email-to" class="block text-[11px] font-medium text-slate-300 mb-1">Target Email</label>
+              <input type="email" id="email-to" value="contact@ronzqr.com" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <div>
+              <label for="email-sub" class="block text-[11px] font-medium text-slate-300 mb-1">Subject</label>
+              <input type="text" id="email-sub" value="Inquiry via RonzQR" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+          </div>`;
+      } else if (type === 'sms') {
+        container.innerHTML = `
+          <div class="space-y-2">
+            <div>
+              <label for="sms-phone" class="block text-[11px] font-medium text-slate-300 mb-1">Phone Number</label>
+              <input type="tel" id="sms-phone" value="+923001234567" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs">
+            </div>
+            <div>
+              <label for="sms-msg" class="block text-[11px] font-medium text-slate-300 mb-1">Text Message</label>
+              <textarea id="sms-msg" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs" rows="2">Please send details.</textarea>
+            </div>
+          </div>`;
+      } else if (type === 'text') {
+        container.innerHTML = `
+          <div>
+            <label for="data-text" class="block text-[11px] font-medium text-slate-300 mb-1">Custom Text</label>
+            <textarea id="data-text" oninput="compileData()" class="w-full p-2.5 glass-input rounded-xl text-xs" rows="3">Generated with RonzQR Studio!</textarea>
+          </div>`;
+      }
+
+      compileData();
+    }
+
+    function compileData() {
+      let finalString = "";
+
+      try {
+        if (currentType === 'url') {
+          finalString = document.getElementById("data-url")?.value || "https://ronzqr.com";
+        } else if (currentType === 'whatsapp') {
+          const phone = (document.getElementById("wa-phone")?.value || "").replace(/[^0-9]/g, '');
+          const msg = encodeURIComponent(document.getElementById("wa-msg")?.value || "");
+          finalString = `https://wa.me/${phone}?text=${msg}`;
+        } else if (currentType === 'wifi') {
+          const ssid = document.getElementById("wifi-ssid")?.value || "";
+          const pass = document.getElementById("wifi-pass")?.value || "";
+          const type = document.getElementById("wifi-type")?.value || "WPA";
+          finalString = `WIFI:S:${ssid};T:${type};P:${pass};;`;
+        } else if (currentType === 'vcard') {
+          const fn = document.getElementById("vc-fn")?.value || "";
+          const ln = document.getElementById("vc-ln")?.value || "";
+          const phone = document.getElementById("vc-phone")?.value || "";
+          const email = document.getElementById("vc-email")?.value || "";
+          finalString = `BEGIN:VCARD\nVERSION:3.0\nN:${ln};${fn}\nFN:${fn} ${ln}\nTEL:${phone}\nEMAIL:${email}\nEND:VCARD`;
+        } else if (currentType === 'location') {
+          const lat = document.getElementById("loc-lat")?.value || "0";
+          const lng = document.getElementById("loc-lng")?.value || "0";
+          finalString = `https://maps.google.com/?q=${lat},${lng}`;
+        } else if (currentType === 'email') {
+          const to = document.getElementById("email-to")?.value || "";
+          const sub = encodeURIComponent(document.getElementById("email-sub")?.value || "");
+          finalString = `mailto:${to}?subject=${sub}`;
+        } else if (currentType === 'sms') {
+          const phone = document.getElementById("sms-phone")?.value || "";
+          const msg = encodeURIComponent(document.getElementById("sms-msg")?.value || "");
+          finalString = `SMSTO:${phone}:${msg}`;
+        } else if (currentType === 'text') {
+          finalString = document.getElementById("data-text")?.value || "Sample Text";
+        }
+
+        qrCode.update({ data: finalString });
+      } catch (err) {
+        console.warn("Input reading fallback executed:", err);
+      }
+    }
+
+    function updateQR() {
+      try {
+        const c1 = document.getElementById("color-dots-1")?.value || "#6366f1";
+        const c2 = document.getElementById("color-dots-2")?.value || "#a855f7";
+        const bg = document.getElementById("color-bg")?.value || "#ffffff";
+        const eyes = document.getElementById("color-eyes")?.value || "#4f46e5";
+        const dotShape = document.getElementById("shape-dots")?.value || "rounded";
+        const eyeSqShape = document.getElementById("shape-corner-sq")?.value || "extra-rounded";
+
+        let dotsOptions = { type: dotShape };
+        if (c1 !== c2) {
+          dotsOptions.gradient = {
+            type: "linear",
+            rotation: 0,
+            colorStops: [{ offset: 0, color: c1 }, { offset: 1, color: c2 }]
+          };
+        } else {
+          dotsOptions.color = c1;
+          dotsOptions.gradient = null;
+        }
+
+        qrCode.update({
+          dotsOptions: dotsOptions,
+          backgroundOptions: { color: bg },
+          cornersSquareOptions: { type: eyeSqShape, color: eyes },
+          cornersDotOptions: { type: "dot", color: eyes },
+          image: uploadedLogoUrl
+        });
+      } catch (err) {
+        console.warn("Update QR style caught safely:", err);
+      }
+    }
+
+    function handleLogoUpload(e) {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          setLogoImage(evt.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function setPresetLogo(url) {
+      setLogoImage(url);
+    }
+
+    function setLogoImage(url) {
+      uploadedLogoUrl = url;
+      
+      const badge = document.getElementById("logo-preview-badge");
+      const img = document.getElementById("logo-preview-img");
+      if (badge && img) {
+        img.src = url;
+        badge.classList.remove("hidden");
+      }
+      
+      updateQR();
+    }
+
+    function clearLogo() {
+      uploadedLogoUrl = null;
+      const logoInput = document.getElementById("logo-input");
+      if (logoInput) logoInput.value = "";
+      
+      const badge = document.getElementById("logo-preview-badge");
+      if (badge) badge.classList.add("hidden");
+
+      updateQR();
+    }
+
+    function applyPreset(name) {
+      const c1 = document.getElementById("color-dots-1");
+      const c2 = document.getElementById("color-dots-2");
+      const bg = document.getElementById("color-bg");
+      const eyes = document.getElementById("color-eyes");
+      const dots = document.getElementById("shape-dots");
+
+      if (!c1 || !c2 || !bg || !eyes || !dots) return;
+
+      if (name === 'neon') {
+        c1.value = "#6366f1"; c2.value = "#a855f7"; bg.value = "#ffffff"; eyes.value = "#4f46e5"; dots.value = "rounded";
+      } else if (name === 'classic') {
+        c1.value = "#090d16"; c2.value = "#090d16"; bg.value = "#ffffff"; eyes.value = "#090d16"; dots.value = "square";
+      } else if (name === 'emerald') {
+        c1.value = "#059669"; c2.value = "#10b981"; bg.value = "#f0fdf4"; eyes.value = "#047857"; dots.value = "classy";
+      } else if (name === 'sunset') {
+        c1.value = "#e11d48"; c2.value = "#f97316"; bg.value = "#ffffff"; eyes.value = "#be123c"; dots.value = "extra-rounded";
+      }
+
+      updateQR();
+    }
+
+    function updateFrameText() {
+      const el = document.getElementById("frame-text");
+      const input = document.getElementById("cta-input");
+      if (el && input) el.innerText = input.value || "SCAN ME";
+    }
+
+    function updateFrameColor() {
+      const wrapper = document.getElementById("frame-wrapper");
+      const input = document.getElementById("color-frame");
+      if (wrapper && input) wrapper.style.backgroundColor = input.value;
+    }
+
+    function downloadQR(ext) {
+      try {
+        qrCode.download({ name: "RonzQR-export", extension: ext });
+      } catch (err) {
+        console.error("Export error caught:", err);
+      }
+    }
+
+    switchType('url');
+  </script>
+</body>
+</html>
+
